@@ -1,7 +1,7 @@
 import {IRent} from './IRent';
 
 export interface IClient {
-    id: number;
+    id?: number;
     surname: string;
     name: string;
     patronymic: string;

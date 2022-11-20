@@ -1,7 +1,7 @@
 import {IRent} from './IRent';
 
 export interface IRoom {
-    id: number;
+    id?: number;
     capacity: number;
     comfort: string;
     cost: number;
