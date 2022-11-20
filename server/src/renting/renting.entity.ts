@@ -13,7 +13,7 @@ export class RentingEntity {
     @Column()
     name: string;
 
-    @Column({type: 'date'})
+    @Column({type: 'date', nullable: true})
     checkOut: string;
 
     @Column()
@@ -28,10 +28,10 @@ export class RentingEntity {
     @Column()
     roomId: number;
 
-    @Column({type: 'date'})
+    @CreateDateColumn()
     bookedStartDate: string;
 
-    @Column({type: 'date'})
+    @Column({type: 'date', nullable: true})
     bookedEndDate: string;
 
     @ManyToOne(

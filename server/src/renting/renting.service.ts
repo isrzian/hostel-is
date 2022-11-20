@@ -16,14 +16,18 @@ export class RentingService {
     async createRent(dto: CreateRentDto): Promise<RentingEntity> {
         const rent = await this.rentingRepository.findOne({name: dto.name})
 
-        if (new Date(dto.checkIn) > new Date(rent.bookedStartDate) && new Date(dto.checkIn) < new Date(rent.bookedEndDate)) {
-            throw new HttpException(
-                'На эту дату уже забронирован этот номер!',
-                HttpStatus.BAD_REQUEST,
-            );
+        if (rent) {
+            if (new Date(dto.checkIn) > new Date(rent.bookedStartDate) && new Date(dto.checkIn) < new Date(rent.bookedEndDate)) {
+                throw new HttpException(
+                    'На эту дату уже забронирован этот номер!',
+                    HttpStatus.BAD_REQUEST,
+                );
+            }
         }
 
         const newRent = new RentingEntity();
+        dto.bookedStartDate = new Date().toISOString()
+        dto.bookedEndDate = new Date().toISOString()
         Object.assign(newRent, dto);
 
         return this.rentingRepository.save(newRent);

@@ -2,10 +2,10 @@ import {IClient} from './IClient';
 import {IRoom} from './IRoom';
 
 export interface IRent {
-    id: number;
-    checkIn: string;
+    id?: number;
+    checkIn?: string;
     name: string;
-    checkOut: string;
+    checkOut?: string;
     discount: number;
     cost: number;
     clientId: number;
